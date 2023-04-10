@@ -5,14 +5,14 @@ import Square from "./Square"
 export class Board extends React.Component {
     renderSquare(i) {
       return (
-      <Square 
-        value={this.props.squares[i]} 
-        onClick={() => {this.props.onClick(i)}}
-      />);
+        <Square 
+          value={this.props.squares[i]} 
+          onClick={() => {this.props.onClick(i)}}
+        />
+      );
     }
 
     render() {
-  
       return (
         <div>
           <div className="board-row">

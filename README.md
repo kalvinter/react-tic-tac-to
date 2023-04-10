@@ -4,7 +4,8 @@ This repository is an extension of React’s tic-tac-toe tutorial for further pr
 
 - improved design using material-ui
 - added postcss for postprocessing
-- 
+- display which player's turn it is in the move history
+- end the game if no more move is possible
 
 
 # Usage

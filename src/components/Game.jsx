@@ -68,6 +68,10 @@ export class Game extends React.Component {
       return null;
     }
 
+    moveCanBeMade(squares){
+      return squares.some(element => element === null);
+    }
+
     jumpTo(step){
       const history = this.state.history
       this.setState({
@@ -81,11 +85,11 @@ export class Game extends React.Component {
       const history = this.state.history;
       const current = history[this.state.stepNumber];
       const winner = this.calculateWinner(current.squares);
+      const moveCanBeMade = this.moveCanBeMade(current.squares)
 
       let moves = []
 
-      console.log(<TurnRightIcon />)
-
+      /* Generate move history */
       if (history.length > 1){
         moves = history.slice(1).map((step, moveNumber) => {
 
@@ -93,10 +97,12 @@ export class Game extends React.Component {
               <Button variant="text" key={moveNumber} 
               className="moveButton" 
               startIcon={<TurnRightIcon />}
-              onClick={() => this.jumpTo(moveNumber)}>Go to move #{moveNumber}</Button>
+              onClick={() => this.jumpTo(moveNumber)}
+              >Go to move #{moveNumber} (player {(moveNumber % 2 === 0)? this.MARK_X: this.MARK_O})</Button>
           )
       })}
 
+      /* Generate Info-Section */
       let infoSection;
 
       if (winner){
@@ -107,11 +113,18 @@ export class Game extends React.Component {
           </Alert>
           /*<div className="winnerMessage infoSection">Winner: {winner}</div>*/
         )
-      } else {
+      } else if (moveCanBeMade) {
         infoSection = (
           /*<div className="infoSection">Next player: {((this.state.xIsNext)? this.MARK_X : this.MARK_O)}</div>*/
           <Alert className="gameSection" severity="info">
             <AlertTitle>Next Player: {((this.state.xIsNext)? this.MARK_X : this.MARK_O)}</AlertTitle>
+          </Alert>
+        )
+      } else {
+        infoSection = (
+          /*<div className="infoSection">Next player: {((this.state.xIsNext)? this.MARK_X : this.MARK_O)}</div>*/
+          <Alert className="gameSection" severity="error">
+            <AlertTitle>No one has won</AlertTitle>
           </Alert>
         )
       }
@@ -130,7 +143,7 @@ export class Game extends React.Component {
           <div className="gameBoard gameSection">
             <Board 
               squares={current.squares}
-              onClick={(i) => {this.toggleSquare(i)}}
+              onClick={(moveCanBeMade)? (i) => {this.toggleSquare(i)}: () => {}}
             />
           </div>
           
