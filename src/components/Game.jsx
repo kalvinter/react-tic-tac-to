@@ -1,6 +1,9 @@
 import React from "react"
 import { Board } from "./board"
 import { Stack, Button } from "@mui/material"
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import TurnRightIcon from '@mui/icons-material/TurnRight';
 
@@ -85,7 +88,7 @@ export class Game extends React.Component {
 
       if (history.length > 1){
         moves = history.slice(1).map((step, moveNumber) => {
-          
+
           return (
               <Button variant="text" key={moveNumber} 
               className="moveButton" 
@@ -94,12 +97,23 @@ export class Game extends React.Component {
           )
       })}
 
-      let status;
+      let infoSection;
 
       if (winner){
-        status = 'Winner: ' + winner
+        infoSection = (
+          <Alert className="winnerMessage gameSection" severity="success">
+            <AlertTitle>Winner: {winner}</AlertTitle>
+   
+          </Alert>
+          /*<div className="winnerMessage infoSection">Winner: {winner}</div>*/
+        )
       } else {
-        status = 'Next player: ' + ((this.state.xIsNext)? this.MARK_X : this.MARK_O);
+        infoSection = (
+          /*<div className="infoSection">Next player: {((this.state.xIsNext)? this.MARK_X : this.MARK_O)}</div>*/
+          <Alert className="gameSection" severity="info">
+            <AlertTitle>Next Player: {((this.state.xIsNext)? this.MARK_X : this.MARK_O)}</AlertTitle>
+          </Alert>
+        )
       }
 
       return (
@@ -111,7 +125,8 @@ export class Game extends React.Component {
                 onClick={() => this.jumpTo(0)}>Start new Game</Button>
             </div>
 
-          <div className="status">{status}</div>
+          {infoSection}
+          
           <div className="gameBoard gameSection">
             <Board 
               squares={current.squares}
