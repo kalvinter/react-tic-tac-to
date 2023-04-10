@@ -1,0 +1,87 @@
+:root {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  
+    --main-bg-color: #eeeeee;
+    --app-bg-color: #ffffff;
+    --text-color: #213547;
+    --accent: #a3a3a3;
+  
+    line-height: 1.5;
+    font-weight: 400;
+  
+    color-scheme: light dark;
+    color: var(--text-color);
+    background-color: var(--main-bg-color);
+  
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+  }
+  
+  body {
+    margin: 0;
+    place-items: center;
+    min-height: 100vh;
+  }
+
+  main {
+    min-height: 80vh;
+  }
+
+  .container {
+    padding: 2rem;
+  }
+
+  #app-wrapper-card {
+    margin: 2rem 1rem;
+    padding: 1rem;
+    align-items: center;
+    background-color: var(--app-bg-color);
+    min-height: 80vh;
+  }
+  
+  h1,h2,h3 {
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+
+  h2 {
+    margin: 2rem 0 0.5rem 0
+  }
+
+  small {
+    font-size: 0.8rem;
+  }
+
+  button {
+    color: var(--text-color);
+  }
+  
+  :root.dark {
+    --text-color: rgba(255, 255, 255, 0.87)
+    --main-bg-color: #242424;
+    --app-bg-color: #2c2c2c;
+    --accent: #2dcc3b;
+  }
+  
+  @media (prefers-color-scheme: light) {
+    :root {
+      --main-bg-color: #eeeeee;
+      --app-bg-color: #ffffff;
+      --text-color: #213547;
+      --accent: #29b835;
+    }
+  
+    a:hover {
+      color: #747bff;
+    }
+    button {
+      background-color: #f9f9f9;
+    }
+  }
