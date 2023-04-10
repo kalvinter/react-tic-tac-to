@@ -8,6 +8,9 @@ This repository is an extension of React’s tic-tac-toe tutorial for further pr
 - end the game if no more move is possible
 
 
+![Screenshot](https://raw.githubusercontent.com/kalvinter/react-tic-tac-to/main/docs/screenshot_for_README_winner_state.png)
+
+
 # Usage
 ```shell
 git clone https://github.com/kalvinter/react-tic-tac-toe.git
