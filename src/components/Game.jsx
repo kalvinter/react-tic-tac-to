@@ -98,7 +98,7 @@ export class Game extends React.Component {
               className="moveButton" 
               startIcon={<TurnRightIcon />}
               onClick={() => this.jumpTo(moveNumber)}
-              >Go to move #{moveNumber} (player {(moveNumber % 2 === 0)? this.MARK_X: this.MARK_O})</Button>
+              >Go to move #{moveNumber + 1} (player {(moveNumber % 2 === 0)? this.MARK_X: this.MARK_O})</Button>
           )
       })}
 
@@ -108,7 +108,7 @@ export class Game extends React.Component {
       if (winner){
         infoSection = (
           <Alert className="winnerMessage gameSection" severity="success">
-            <AlertTitle>Winner: {winner}</AlertTitle>
+            <AlertTitle>Winner: Player {winner}</AlertTitle>
    
           </Alert>
           /*<div className="winnerMessage infoSection">Winner: {winner}</div>*/
