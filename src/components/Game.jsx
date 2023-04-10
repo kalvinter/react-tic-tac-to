@@ -1,7 +1,8 @@
 import React from "react"
 import { Board } from "./board"
-
-import "../game.css"
+import { Stack, Button } from "@mui/material"
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import TurnRightIcon from '@mui/icons-material/TurnRight';
 
 export class Game extends React.Component {
     constructor(props){
@@ -12,6 +13,10 @@ export class Game extends React.Component {
             squares: Array(9).fill(null)
           }],
           stepNumber: 0
+      }
+
+      this.newGameBoard = {
+        squares: Array(9).fill(null)
       }
 
       this.MARK_X = "X"
@@ -61,9 +66,11 @@ export class Game extends React.Component {
     }
 
     jumpTo(step){
+      const history = this.state.history
       this.setState({
         xIsNext: (step % 2) === 0,
-        stepNumber: step
+        stepNumber: step,
+        history: history.slice(0, step + 1)
       })
     }
 
@@ -72,16 +79,20 @@ export class Game extends React.Component {
       const current = history[this.state.stepNumber];
       const winner = this.calculateWinner(current.squares);
 
-      const moves = history.map((step, moveNumber) => {
-        console.log(step)
-        console.log(moveNumber)
-        const label = moveNumber ? "Go to move #" + moveNumber : "Go to game start"
-        return (
-          <li key={moveNumber}>
-            <button onClick={() => this.jumpTo(moveNumber)}>{label}</button>
-          </li>
-        )
-      })
+      let moves = []
+
+      console.log(<TurnRightIcon />)
+
+      if (history.length > 1){
+        moves = history.slice(1).map((step, moveNumber) => {
+          
+          return (
+              <Button variant="text" key={moveNumber} 
+              className="moveButton" 
+              startIcon={<TurnRightIcon />}
+              onClick={() => this.jumpTo(moveNumber)}>Go to move #{moveNumber}</Button>
+          )
+      })}
 
       let status;
 
@@ -93,16 +104,27 @@ export class Game extends React.Component {
 
       return (
         <div className="game">
-          <div className="game-board">
+          <div className="gameActionRow gameSection">
+            <Button variant="text" key={0} 
+                className="moveButton" 
+                startIcon={<RestartAltIcon />}
+                onClick={() => this.jumpTo(0)}>Start new Game</Button>
+            </div>
+
+          <div className="status">{status}</div>
+          <div className="gameBoard gameSection">
             <Board 
               squares={current.squares}
               onClick={(i) => {this.toggleSquare(i)}}
             />
           </div>
-          <div className="game-info">
-            <div className="status">{status}</div>
-
-            <ol>{moves}</ol>
+          
+          <div className="gameInfo">
+            <h2>Move History</h2>
+            <small>Click on move to jump back to this point</small>
+            <Stack spacing={0}>
+              {moves}
+            </Stack>
           </div>
         </div>
       );

@@ -1,5 +1,5 @@
 {
-  "name": "tic-tac-to",
+  "name": "react-tic-tac-to",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,8 +9,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.11.12",
     "autoprefixer": "^10.4.13",
+    "cssnano": "^6.0.0",
     "postcss": "^8.4.21",
+    "postcss-import": "^15.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

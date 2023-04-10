@@ -1,6 +1,6 @@
 # Introduction
 
-This repository is an extension of React’s tic-tac-toe tutorial for further practice. It was created using vite instead and extended with the following functionalities:
+This repository is an extension of React’s tic-tac-toe tutorial for further practice. It was created using vite and extended with the following functionalities:
 
 - t.b.d.
 
